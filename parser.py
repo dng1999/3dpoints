@@ -44,7 +44,7 @@ The file follows the following format:
 
 See the file script for an example of the file format
 """
-ARG_COMMANDS = [ 'line', 'scale', 'move', 'rotate', 'save', 'circle', 'bezier', 'hermite' ]
+ARG_COMMANDS = [ 'line', 'scale', 'move', 'rotate', 'save', 'circle', 'bezier', 'hermite', 'box', 'sphere', 'torus' ]
 
 def parse_file( fname, edges, transform, screen, color ):
 
@@ -60,6 +60,24 @@ def parse_file( fname, edges, transform, screen, color ):
         if line in ARG_COMMANDS:
             c+= 1
             args = lines[c].strip().split(' ')
+
+        #if line == 'sphere':
+            #print 'SPHERE\t' + str(args)
+            #add_sphere(edges,
+            #           float(args[0]), float(args[1]), float(args[2]),
+            #           float(args[3]))
+            
+        #elif line == 'torus':
+            #print 'TORUS\t' + str(args)
+            #add_torus(edges,
+            #          float(args[0]), float(args[1]), float(args[2]),
+            #          float(args[3]), float(args[4]))
+            
+        if line == 'box':
+            print 'BOX\t' + str(args)
+            #add_box(edges,
+            #        float(args[0]), float(args[1]), float(args[2]),
+            #        float(args[3]), float(args[4]), float(args[5]) )
 
         if line == 'circle':
             #print 'CIRCLE\t' + str(args)
@@ -111,6 +129,9 @@ def parse_file( fname, edges, transform, screen, color ):
         elif line == 'apply':
             matrix_mult( transform, edges )
 
+        elif line == 'clear':
+            screen = new_screen()
+            
         elif line == 'display' or line == 'save':
             clear_screen(screen)
             draw_lines(edges, screen, color)
