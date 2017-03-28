@@ -61,23 +61,23 @@ def parse_file( fname, edges, transform, screen, color ):
             c+= 1
             args = lines[c].strip().split(' ')
 
-        #if line == 'sphere':
+        if line == 'sphere':
             #print 'SPHERE\t' + str(args)
-            #add_sphere(edges,
-            #           float(args[0]), float(args[1]), float(args[2]),
-            #           float(args[3]))
+            add_sphere(edges,
+                       float(args[0]), float(args[1]), float(args[2]),
+                       float(args[3]),.01)
             
-        #elif line == 'torus':
+        elif line == 'torus':
             #print 'TORUS\t' + str(args)
-            #add_torus(edges,
-            #          float(args[0]), float(args[1]), float(args[2]),
-            #          float(args[3]), float(args[4]))
+            add_torus(edges,
+                      float(args[0]), float(args[1]), float(args[2]),
+                      float(args[3]), float(args[4]),.01)
             
-        if line == 'box':
-            print 'BOX\t' + str(args)
-            #add_box(edges,
-            #        float(args[0]), float(args[1]), float(args[2]),
-            #        float(args[3]), float(args[4]), float(args[5]) )
+        elif line == 'box':
+            #print 'BOX\t' + str(args)
+            add_box(edges,
+                    float(args[0]), float(args[1]), float(args[2]),
+                    float(args[3]), float(args[4]), float(args[5]) )
 
         if line == 'circle':
             #print 'CIRCLE\t' + str(args)
@@ -130,7 +130,7 @@ def parse_file( fname, edges, transform, screen, color ):
             matrix_mult( transform, edges )
 
         elif line == 'clear':
-            screen = new_screen()
+            edges = []
             
         elif line == 'display' or line == 'save':
             clear_screen(screen)

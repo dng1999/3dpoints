@@ -16,14 +16,37 @@ def add_box( points, x, y, z, width, height, depth ):
     add_edge(points, x2, y, z2, x2, y, z2)
 
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    generate_sphere( points, cx, cy, cz, r, step )
+    
 def generate_sphere( points, cx, cy, cz, r, step ):
-    pass
+    theta = 0
+    phi = 0
+    while theta <= 1.00001:
+        while phi <= 1.00001:
+            x = r*math.cos(math.pi*theta) + cx
+            y = r*math.sin(math.pi*theta)*math.cos(2*math.pi*phi) + cy
+            z = r*math.sin(math.pi*theta)*math.sin(2*math.pi*phi) + cz
+            add_edge(points,x,y,z,x,y,z)
+            phi += step
+        theta += step
+        phi = 0
+    return points
 
 def add_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    generate_torus( points, cx, cy, cz, r0, r1, step )
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    theta = 0
+    phi = 0
+    while theta <= 1.00001:
+        while phi <= 1.00001:
+            x = math.cos(phi*math.pi*2)*(r0*math.cos(theta*math.pi*2)+r1)+cx
+            y = r0*math.sin(theta*math.pi*2)+cy
+            z = -1*math.sin(theta*math.pi*2)*(r0*math.cos(theta*math.pi*2)+r1)+cz
+            add_edge(points,x,y,z,x,y,z)
+            phi += step
+        theta += step
+        phi = 0
+    return points
 
 def add_circle( points, cx, cy, cz, r, step ):
     x0 = r + cx
