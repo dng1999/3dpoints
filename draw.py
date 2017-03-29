@@ -41,7 +41,7 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
         while phi <= 1.00001:
             x = math.cos(phi*math.pi*2)*(r0*math.cos(theta*math.pi*2)+r1)+cx
             y = r0*math.sin(theta*math.pi*2)+cy
-            z = -1*math.sin(theta*math.pi*2)*(r0*math.cos(theta*math.pi*2)+r1)+cz
+            z = -1*math.sin(phi*math.pi*2)*(r0*math.cos(theta*math.pi*2)+r1)+cz
             add_edge(points,x,y,z,x,y,z)
             phi += step
         theta += step
